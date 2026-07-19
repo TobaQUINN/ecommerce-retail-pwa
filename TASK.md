@@ -1,0 +1,1 @@
+# Defines what Claude should do now
