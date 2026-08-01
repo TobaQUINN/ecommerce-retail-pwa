@@ -1,75 +1,181 @@
 # Defines what Claude should do now
 The content here will always change progressively, it contains what you will do at every moment of the way in this project, and is complemented with context/instruction from the chat window
 
+# TASK: Shopping Cart & Buy Now Functionality
+
 ## Objective
 
-Before implementation, read:
+Implement the complete Shopping Cart and Buy Now functionality connected to the Product Details page.
 
+This task should make the existing **Add to Cart** and **Buy Now** buttons fully functional while maintaining the premium shopping experience of the website.
+
+---
+
+## Reference Documents
+
+Read these documents before implementation:
+
+- TASK.md
 - CLAUDE.md
-- docs/03_DESIGN_SYSTEM.md
-- docs/08_USER_FLOW.md
-- docs/11_COMPONENT_LIBRARY.md
-- docs/12_CODING_STANDARDS.md
-- docs/14_NON_NEGOTIABLES.md
-- playbooks/department-page.prompt.md
+- docs/PROJECT_STRUCTURE.md
+- docs/DATABASE.md
+- docs/UI_GUIDELINES.md
+- docs/ORDER_WORKFLOW.md
+- docs/PRODUCTS.md
 
-## Asset Strategy
+Follow all project conventions.
 
-The current priority is completing the application's structure, functionality, database integration and user flows.
+---
 
-Product images, shop photographs, promotional banners, luxury backgrounds and AI-generated visual assets will be added later inside the `references/` directory.
+## Scope
 
-Until then:
+### 1. Add to Cart
 
-- Use high-quality placeholders where necessary.
-- Structure components so real assets can be swapped in easily.
-- Do not optimize for final visuals yet.
-- Do not hardcode placeholder assets into reusable components.
+When the customer clicks **Add to Cart**:
 
-The final visual refinement phase will include:
+- Add the selected product to the shopping cart.
+- Store:
+  - Product ID
+  - Product name
+  - Product image
+  - Selected variation (if any)
+  - Quantity
+  - Unit price
+  - Total price
+- Show a success notification.
+- Update the cart icon badge immediately.
+- Do not reload the page.
 
-- Real product images
-- Real shop images
-- AI-generated backgrounds
-- Premium animations
-- Luxury visual polish
-- Final typography and spacing refinements
+If the product already exists:
 
-Design the pages with this future enhancement phase in mind.
+- Increase quantity instead of creating duplicates.
 
-## Deliverables
+---
 
-Build:
+### 2. Shopping Cart Page
 
-- Electronics Department Page
-- Fashion Department Page
+Create or complete the cart page.
 
-Each page should include:
+Display:
 
-- Department Hero
-- Category Filters
-- Search Bar (UI only)
-- Product Grid
-- Product Cards
-- Sorting Controls
-- Empty State
-- Pagination or Load More
-- Responsive Layout
+- Product image
+- Product name
+- Category
+- Selected variation
+- Unit price
+- Quantity selector
+- Item subtotal
+- Remove item button
 
-## Constraints
+Bottom summary:
 
-Do not implement:
+- Number of items
+- Estimated subtotal
 
-- Product details page
-- Cart functionality
-- Checkout
-- Search logic
-- Firebase CRUD
+Buttons:
 
-Focus only on the department browsing experience.
+- Continue Shopping
+- Proceed to Checkout
+
+---
+
+### 3. Quantity Management
+
+Users can:
+
+- Increase quantity
+- Decrease quantity
+- Remove item
+
+Totals should update instantly.
+
+---
+
+### 4. Buy Now
+
+When the customer clicks **Buy Now**:
+
+Skip the cart and immediately begin checkout with only the selected product.
+
+The purchased item should not depend on existing cart contents.
+
+---
+
+### 5. Cart Persistence
+
+The shopping cart should remain available after:
+
+- Page refresh
+- Navigation between pages
+
+Prepare the architecture for future database persistence after authentication is added.
+
+---
+
+### 6. Empty Cart
+
+If the cart is empty:
+
+Display a premium empty state including:
+
+- Illustration placeholder
+- Friendly message
+- Continue Shopping button
+
+---
+
+### 7. Navigation
+
+The cart icon in the header should:
+
+- Open the cart page
+- Display live item count
+- Update automatically whenever products are added or removed
+
+---
+
+### 8. Responsive Design
+
+Support:
+
+- Desktop
+- Tablet
+- Mobile
+
+---
+
+## Out of Scope
+
+Do NOT implement:
+
+- Payment
+- Order creation
+- Checkout form
+- Delivery calculation
+- Inventory deduction
+
+Those are future tasks.
+
+---
 
 ## Acceptance Criteria
 
-The pages should be production-ready from an architectural standpoint and visually prepared for future replacement with real assets.
+✓ Add to Cart works
 
-Review the implementation, recommend improvements, and stop for approval.
+✓ Buy Now works
+
+✓ Cart updates instantly
+
+✓ Cart badge updates
+
+✓ Quantity adjustment works
+
+✓ Remove item works
+
+✓ Cart survives refresh
+
+✓ Responsive UI
+
+✓ Clean architecture ready for checkout integration
+
+✓ No placeholder logic unless clearly marked
