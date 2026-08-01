@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ShoppingCart, Zap } from 'lucide-react'
 import { Badge, Button } from '@/components/ui'
 import { useCartStore } from '@/store/cart'
+import { useToastStore } from '@/store/toast'
 import { QuantitySelector } from './QuantitySelector'
 import type { ProductDetail } from './data'
 
@@ -33,6 +35,8 @@ function formatPrice(price: number): string {
 export function ProductInfo({ product }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1)
   const addItem = useCartStore((s) => s.addItem)
+  const addToast = useToastStore((s) => s.addToast)
+  const navigate = useNavigate()
   const isOutOfStock = product.availability === 'Out of Stock'
 
   function handleAddToCart() {
@@ -42,6 +46,21 @@ export function ProductInfo({ product }: ProductInfoProps) {
       price: product.price,
       quantity,
       image: product.images[0],
+    })
+    addToast(`${product.name} added to cart`)
+  }
+
+  function handleBuyNow() {
+    navigate('/checkout', {
+      state: {
+        buyNow: {
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          quantity,
+          image: product.images[0],
+        },
+      },
     })
   }
 
@@ -112,7 +131,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
             <Button
               size="lg"
               fullWidth
-              onClick={handleAddToCart}
+              onClick={handleBuyNow}
               className="gap-2 bg-accent text-black hover:bg-accent-light"
             >
               <Zap size={18} />
