@@ -3,12 +3,6 @@ The content here will always change progressively, it contains what you will do 
 
 ## Objective
 
-Implement the customer homepage for the Modern Retail Platform.
-
-This is the first production page users will see and it should establish the overall visual quality of the website.
-
-## Context
-
 Before implementation, read:
 
 - CLAUDE.md
@@ -17,62 +11,65 @@ Before implementation, read:
 - docs/11_COMPONENT_LIBRARY.md
 - docs/12_CODING_STANDARDS.md
 - docs/14_NON_NEGOTIABLES.md
-- playbooks/homepage.prompt.md
+- playbooks/department-page.prompt.md
 
-Use the homepage reference image inside:
+## Asset Strategy
 
-references/homepage.png
+The current priority is completing the application's structure, functionality, database integration and user flows.
+
+Product images, shop photographs, promotional banners, luxury backgrounds and AI-generated visual assets will be added later inside the `references/` directory.
+
+Until then:
+
+- Use high-quality placeholders where necessary.
+- Structure components so real assets can be swapped in easily.
+- Do not optimize for final visuals yet.
+- Do not hardcode placeholder assets into reusable components.
+
+The final visual refinement phase will include:
+
+- Real product images
+- Real shop images
+- AI-generated backgrounds
+- Premium animations
+- Luxury visual polish
+- Final typography and spacing refinements
+
+Design the pages with this future enhancement phase in mind.
 
 ## Deliverables
 
-Build the homepage using reusable components only.
+Build:
 
-The homepage should include:
+- Electronics Department Page
+- Fashion Department Page
 
-- Responsive Navigation (already implemented)
-- Hero Section
-- Department Selection (Electronics & Fashion)
-- Featured Categories
-- Featured Products
-- Why Choose Us
-- Shopping Process
-- Store Information
-- Customer Trust Section
-- Call To Action
-- Footer (already implemented)
+Each page should include:
 
-## Requirements
-
-The homepage must:
-
-- Be mobile-first
-- Match the Design System
-- Be fully responsive
-- Use reusable components
-- Use Framer Motion for subtle animations
-- Follow accessibility best practices
-- Use placeholder product data only where necessary
-- Keep business logic separate from presentation
+- Department Hero
+- Category Filters
+- Search Bar (UI only)
+- Product Grid
+- Product Cards
+- Sorting Controls
+- Empty State
+- Pagination or Load More
+- Responsive Layout
 
 ## Constraints
 
 Do not implement:
 
-- Product pages
-- Search functionality
+- Product details page
 - Cart functionality
 - Checkout
+- Search logic
 - Firebase CRUD
-- Admin functionality
 
-Focus only on producing a polished homepage.
+Focus only on the department browsing experience.
 
 ## Acceptance Criteria
 
-The homepage should look production-ready and provide an excellent first impression.
+The pages should be production-ready from an architectural standpoint and visually prepared for future replacement with real assets.
 
-After implementation:
-
-- Review the code.
-- Suggest improvements.
-- Stop and wait for approval before continuing.
+Review the implementation, recommend improvements, and stop for approval.
