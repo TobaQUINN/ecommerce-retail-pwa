@@ -61,7 +61,6 @@ npm run dev
 # Production build
 npm run build
 ```
-
 Create a `.env.local` file from `.env.example` and add your Firebase credentials.
 
 ## Architecture Principles
