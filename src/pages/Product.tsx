@@ -34,7 +34,7 @@ function Product() {
           ]}
         />
 
-        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
           <ImageGallery images={product.images} productName={product.name} />
           <ProductInfo product={product} />
         </div>

@@ -10,7 +10,7 @@ export function ImageGallery({ images, productName }: ImageGalleryProps) {
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-100 group">
+      <div className="relative aspect-[4/3] sm:aspect-square overflow-hidden rounded-xl bg-gray-100 group">
         <img
           src={images[activeIndex]}
           alt={productName}
