@@ -6,8 +6,6 @@
 
 You are contributing to the development of a production-quality retail ecommerce platform for a real family-owned business located in Ijoko, Ogun State, Nigeria.
 
-The goal is not simply to build a website.
-
 The goal is to build a reliable, trustworthy and scalable digital shopping experience that serves real customers while maintaining production-quality engineering standards.
 
 Always prioritize:
