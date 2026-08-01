@@ -1,0 +1,7 @@
+export { ImageGallery } from './ImageGallery'
+export { ProductInfo } from './ProductInfo'
+export { ProductDescription } from './ProductDescription'
+export { RelatedProducts } from './RelatedProducts'
+export { TrustBadges } from './TrustBadges'
+export { QuantitySelector } from './QuantitySelector'
+export { getProductBySlug, getRelatedProducts } from './data'
