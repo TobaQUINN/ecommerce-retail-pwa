@@ -5,53 +5,50 @@ The content here will always change progressively, it contains what you will do 
 
 ## Objective
 
-Implement the administrator dashboard for the Modern Retail Platform.
+Complete the Firebase integration across the application.
 
-The dashboard should provide administrators with a clean, efficient interface for managing the business.
+The goal is to ensure every customer and administrator workflow is connected to Firestore using production-ready architecture.
 
 ## Context
 
 Before implementation, read:
 
 - CLAUDE.md
-- docs/09_ADMIN_FLOW.md
-- docs/11_COMPONENT_LIBRARY.md
+- docs/04_ARCHITECTURE.md
+- docs/06_FIREBASE_STRUCTURE.md
 - docs/12_CODING_STANDARDS.md
-- docs/14_NON_NEGOTIABLES.md
-- playbooks/admin-dashboard.prompt.md
+- playbooks/firebase-setup.prompt.md
 
 ## Deliverables
 
-Build:
+Complete integration for:
 
-- Admin Login Protection
-- Dashboard Layout
-- Dashboard Overview
-- Sidebar Navigation
-- Statistics Cards
-- Recent Orders
-- Recent Customer Messages
-- Order Detail View
-- Order Status Management
-- Customer Chat Interface
-- Responsive Design
+- Products
+- Categories
+- Customer Profiles
+- Orders
+- Messages
+- Order Status Updates
+- Admin Authentication
+- Firestore Services
+- Loading States
+- Error Handling
 
-Use Firestore as the data source.
+Replace placeholder data with Firestore where appropriate.
 
 ## Constraints
 
 Do not implement:
 
-- Product CRUD
-- Category CRUD
-- Inventory Management
 - Payment Verification
+- Product Management
+- Inventory Tracking
 - Email Notifications
 
-Focus on building the admin foundation and order management experience.
+Focus only on completing Firebase integration and ensuring data consistency.
 
 ## Acceptance Criteria
 
-The dashboard should allow administrators to monitor orders, communicate with customers, and update order statuses using reusable components and clean architecture.
+All customer-facing pages and the admin dashboard should retrieve and update data through Firestore using reusable services.
 
 Review the implementation and stop for approval.
