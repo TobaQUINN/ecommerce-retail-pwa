@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Container, EmptyState } from '@/components/ui'
 import { ProductCard } from '@/components/common/ProductCard'
 import { ProductGrid } from '@/components/common/ProductGrid'
@@ -35,10 +36,18 @@ function sortProducts(products: ProductCardData[], sort: SortOption): ProductCar
 }
 
 export function DepartmentContent({ config, products }: DepartmentContentProps) {
+  const [searchParams] = useSearchParams()
   const [search, setSearch] = useState('')
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    searchParams.get('category')
+  )
   const [sort, setSort] = useState<SortOption>('default')
   const [visibleCount, setVisibleCount] = useState(PRODUCTS_PER_PAGE)
+
+  useEffect(() => {
+    const cat = searchParams.get('category')
+    if (cat) setActiveCategory(cat)
+  }, [searchParams])
 
   const filteredProducts = useMemo(() => {
     let result = products

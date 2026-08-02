@@ -64,7 +64,7 @@ export function CategoriesSection() {
           {categories.map((category, index) => (
             <AnimateIn key={category.name} delay={index * 0.06}>
               <Link
-                to={`/${category.department}`}
+                to={`/${category.department}?category=${encodeURIComponent(category.name)}`}
                 className="group flex flex-col h-full bg-white rounded-xl border border-gray-100 p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-300"
               >
                 <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3">
