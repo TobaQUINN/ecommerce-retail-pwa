@@ -18,8 +18,7 @@ Read before implementation:
 - docs/PROJECT_STRUCTURE.md
 - docs/DATABASE.md
 - docs/ORDER_WORKFLOW.md
-- docs/UI_GUIDELINES.md
-
+- docs/UI_GUIDELINE
 ---
 
 ## Scope
