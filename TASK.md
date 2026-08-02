@@ -5,50 +5,97 @@ The content here will always change progressively, it contains what you will do 
 
 ## Objective
 
-Complete the Firebase integration across the application.
+Conduct a comprehensive Project Readiness Review before beginning the Product & Category Management phase.
 
-The goal is to ensure every customer and administrator workflow is connected to Firestore using production-ready architecture.
+This is a review and planning task, not an implementation task.
 
 ## Context
 
-Before implementation, read:
+Before beginning, read:
 
 - CLAUDE.md
-- docs/04_ARCHITECTURE.md
-- docs/06_FIREBASE_STRUCTURE.md
-- docs/12_CODING_STANDARDS.md
-- playbooks/firebase-setup.prompt.md
+- All project documentation in `docs/`
+- Current implementation
+- Existing Firestore structure
+- Existing routes and components
+
+## Purpose
+
+Determine whether the project is architecturally, functionally and structurally ready for Product & Category Management.
+
+Identify anything that should be completed before introducing real business data.
+
+## Review Areas
+
+Evaluate the project against the documentation and review:
+
+- Overall architecture
+- Folder structure
+- Component organization
+- Reusability
+- Routing
+- Navigation
+- Customer workflow
+- Admin workflow
+- Order workflow
+- Authentication & Authorization
+- Firestore structure
+- Security rules
+- State management
+- Loading states
+- Error handling
+- Empty states
+- Accessibility
+- Responsive design
+- Performance
+- Scalability
+- Documentation consistency
+- Technical debt
 
 ## Deliverables
 
-Complete integration for:
+Provide:
 
-- Products
-- Categories
-- Customer Profiles
-- Orders
-- Messages
-- Order Status Updates
-- Admin Authentication
-- Firestore Services
-- Loading States
-- Error Handling
+- A Project Readiness Report
+- Missing functionality
+- Missing workflows
+- Missing edge cases
+- Inconsistencies between implementation and documentation
+- Architectural concerns
+- Improvement recommendations
 
-Replace placeholder data with Firestore where appropriate.
+Rank each finding as:
+
+- Critical
+- Important
+- Nice to Have
+
+For every recommendation explain:
+
+- Why it matters
+- The recommended solution
+- Whether it should be completed before Product Management or can safely wait until a later milestone
+
+## Final Deliverable
+
+Create a Project Readiness Checklist with four sections:
+
+✅ Completed
+
+🟡 Complete Before Product Management
+
+🔵 Complete During Visual Refinement
+
+⚪ Complete Before Production Deployment
 
 ## Constraints
 
-Do not implement:
+Do not implement new features unless they are required to demonstrate or validate a recommendation.
 
-- Payment Verification
-- Product Management
-- Inventory Tracking
-- Email Notifications
-
-Focus only on completing Firebase integration and ensuring data consistency.
+Do not modify the architecture without first explaining the reasoning.
 
 ## Acceptance Criteria
 
-All customer-facing pages and the admin dashboard should retrieve and update data through Firestore using reusable services.
+The project should be reviewed as though it were being prepared for professional production development.
 
-Review the implementation and stop for approval.
+The goal is to ensure the project is ready to enter the Product & Category Management phase with confidence.
