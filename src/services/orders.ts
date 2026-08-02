@@ -6,7 +6,6 @@ import {
   getDocs,
   query,
   where,
-  orderBy,
   onSnapshot,
   serverTimestamp,
   type Unsubscribe,
@@ -39,16 +38,23 @@ export async function createOrder(data: CreateOrderData) {
 
   const uid = auth.currentUser?.uid
 
-  const customerRef = await addDoc(collection(db, 'customers'), {
-    uid,
-    fullName: data.customer.fullName,
-    phone: data.customer.phone,
-    email: data.customer.email,
-    address: data.customer.address,
-    state: data.customer.state,
-    localGovernment: data.customer.city,
-    createdAt: serverTimestamp(),
-  })
+  // Check if customer record already exists for this user
+  const existingCustomers = await getDocs(
+    query(collection(db, 'customers'), where('uid', '==', uid))
+  )
+
+  if (existingCustomers.empty) {
+    await addDoc(collection(db, 'customers'), {
+      uid,
+      fullName: data.customer.fullName,
+      phone: data.customer.phone,
+      email: data.customer.email,
+      address: data.customer.address,
+      state: data.customer.state,
+      localGovernment: data.customer.city,
+      createdAt: serverTimestamp(),
+    })
+  }
 
   const orderRef = await addDoc(collection(db, 'orders'), {
     orderNumber,
