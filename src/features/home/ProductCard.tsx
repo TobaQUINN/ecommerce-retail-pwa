@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom'
 import { ShoppingCart } from 'lucide-react'
 import { Badge } from '@/components/ui'
-import type { FeaturedProduct } from './data'
+interface FeaturedProduct {
+  id: string
+  name: string
+  price: number
+  image: string
+  department: string
+  availability: string
+  badge?: string
+}
 
 interface ProductCardProps {
   product: FeaturedProduct

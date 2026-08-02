@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui'
 import { AnimateIn } from '@/components/ui/AnimateIn'
-import type { ProductDetail } from './data'
+
+interface RelatedProduct {
+  id: string
+  slug: string
+  name: string
+  price: number
+  image: string
+  badge?: string
+}
 
 interface RelatedProductsProps {
-  products: ProductDetail[]
+  products: RelatedProduct[]
 }
 
 function formatPrice(price: number): string {
@@ -32,7 +40,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
             >
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img
-                  src={product.images[0]}
+                  src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"

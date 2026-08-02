@@ -1,3 +1,4 @@
 export { DepartmentHero } from './DepartmentHero'
 export { DepartmentContent } from './DepartmentContent'
-export { departmentConfigs, getProductsByDepartment } from './data'
+export { departmentConfigs } from './data'
+export type { DepartmentConfig } from './data'
