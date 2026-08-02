@@ -1,106 +1,57 @@
 # Defines what Claude should do now
 The content here will always change progressively, it contains what you will do at every moment of the way in this project, and is complemented with context/instruction from the chat window
 
-# TASK: Checkout & Order Request
+# Current Task
 
 ## Objective
 
-Implement the checkout flow that allows customers to submit an order request. This is **not** an online payment system. Orders are reviewed manually before payment is requested.
+Implement the administrator dashboard for the Modern Retail Platform.
 
----
+The dashboard should provide administrators with a clean, efficient interface for managing the business.
 
-## References
+## Context
 
-Read before implementation:
+Before implementation, read:
 
 - CLAUDE.md
-- TASK.md
-- docs/PROJECT_STRUCTURE.md
-- docs/DATABASE.md
-- docs/ORDER_WORKFLOW.md
-- docs/UI_GUIDELINE
----
+- docs/09_ADMIN_FLOW.md
+- docs/11_COMPONENT_LIBRARY.md
+- docs/12_CODING_STANDARDS.md
+- docs/14_NON_NEGOTIABLES.md
+- playbooks/admin-dashboard.prompt.md
 
-## Scope
+## Deliverables
 
-### Checkout Page
+Build:
 
-Create a premium checkout page using products from the Shopping Cart or Buy Now.
+- Admin Login Protection
+- Dashboard Layout
+- Dashboard Overview
+- Sidebar Navigation
+- Statistics Cards
+- Recent Orders
+- Recent Customer Messages
+- Order Detail View
+- Order Status Management
+- Customer Chat Interface
+- Responsive Design
 
-Collect:
+Use Firestore as the data source.
 
-- Full Name
-- Phone Number
-- Email (optional)
-- State
-- City
-- Delivery Address
-- Order Notes (optional)
-
-Show:
-
-- Ordered products
-- Quantity
-- Item subtotal
-- Estimated total
-- Delivery note stating shipping cost is confirmed later.
-
-### Validation
-
-Validate all required fields.
-
-Prevent submission when required information is missing.
-
-### Order Request
-
-On submission:
-
-- Generate a unique Order ID.
-- Save the order and its items to the database.
-- Mark status as **Pending Review**.
-- Store customer details and timestamps.
-- Clear the cart after a successful order.
-
-### Success Page
-
-Display:
-
-- Success message
-- Order ID
-- Customer summary
-- Ordered items
-- Next steps explaining that the business will verify product availability, delivery location, shipping cost, and then contact the customer with payment instructions.
-
-### Admin Readiness
-
-Structure the data so future admin pages can:
-
-- View pending orders
-- Update order status
-- Contact customers
-
----
-
-## Out of Scope
+## Constraints
 
 Do not implement:
 
-- Online payment
-- Bank transfer verification
-- Inventory deduction
-- Order tracking
-- Admin dashboard
-- Email or SMS notifications
+- Product CRUD
+- Category CRUD
+- Inventory Management
+- Payment Verification
+- Email Notifications
 
----
+Focus on building the admin foundation and order management experience.
 
 ## Acceptance Criteria
 
-- Checkout works from Cart and Buy Now.
-- Orders are stored successfully.
-- Unique Order IDs are generated.
-- Validation works correctly.
-- Success page displays correctly.
-- Cart clears after successful submission.
-- Responsive design maintained.
-- Code is modular and production-ready.
+The dashboard should allow administrators to monitor orders, communicate with customers, and update order statuses using reusable components and clean architecture.
+
+Review the implementation and stop for approval.
