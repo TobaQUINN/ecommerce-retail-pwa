@@ -8,6 +8,20 @@ Provide administrators with a simple and efficient interface for managing daily 
 
 ---
 
+## Design Principle
+
+The Admin Dashboard is the only interface used to manage production business data.
+
+Administrators should never need to modify source code, edit seed files, or redeploy the application to:
+
+- Add products
+- Update prices
+- Change inventory
+- Upload product images
+- Manage categories
+
+The customer website must always retrieve the latest business data from Firestore.
+
 ## Administrator Journey
 
 Login
