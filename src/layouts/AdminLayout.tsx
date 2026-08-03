@@ -3,6 +3,8 @@ import { Outlet, Navigate, Link, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard,
   Package,
+  ShoppingBag,
+  FolderOpen,
   Users,
   Menu,
   X,
@@ -18,6 +20,8 @@ import { BUSINESS_NAME } from '@/constants'
 const navItems = [
   { label: 'Dashboard', path: '/admin', icon: LayoutDashboard },
   { label: 'Orders', path: '/admin/orders', icon: Package },
+  { label: 'Products', path: '/admin/products', icon: ShoppingBag },
+  { label: 'Categories', path: '/admin/categories', icon: FolderOpen },
   { label: 'Customers', path: '/admin/customers', icon: Users },
 ]
 

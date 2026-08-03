@@ -65,3 +65,20 @@ Amirah drafted the next TASK.md for the admin dashboard and asked me to build it
 **2 August 2026**
 
 Amirah hit several issues getting the admin dashboard running: Firestore permission errors blocking the admin check, the spinner never resolving, and orders not loading due to `orderBy` requiring indexes. I resolved each one iteratively — adding error handling, fixing rules, removing server-side sorts, and adding an email fallback for admin access. She also spotted duplicate customer records being created on every order — I fixed the checkout to check for existing customer records before creating new ones. Amirah confirmed everything now opens and said we'll refine the admin workflows later.
+
+# 12 — Admin Product & Category Management
+**3 August 2026**
+
+Amirah made a strategic decision: instead of listing real product names in the source code (which is public on GitHub), all product data would be managed exclusively through the Admin Dashboard. This protects business-sensitive information — real product names, prices, and inventory stay in Firestore (private), never in the codebase.
+
+She asked a key question before implementation: "If I add products through the admin now, will they really be stored or do I need to deploy first?" I clarified that Firestore is a live cloud database — data persists immediately regardless of whether the site is deployed. The admin writes to the cloud; the customer site reads from it.
+
+I built the full admin data management system:
+- **Category Management** — create, edit, delete categories with department assignment. Deletion is blocked if products are still assigned (with a clear explanation).
+- **Product Management** — full CRUD with: name, department (fixed dropdown), category (from existing categories), price (validated positive currency), stock (validated whole numbers), availability status, description, and up to 5 image uploads per product (JPG/PNG/WebP, max 5MB each, validated before upload).
+- All forms include validation, loading states, success toasts, and confirmation dialogs before destructive actions.
+- Products page has search and filter by department/category, with responsive layout (table on desktop, cards on mobile).
+- Added Products and Categories links to the admin sidebar navigation.
+
+The Admin Dashboard is now the single source of truth for managing the store's catalog. No code changes or redeployments needed to add, update, or remove products.
+
