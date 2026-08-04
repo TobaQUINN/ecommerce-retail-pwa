@@ -71,10 +71,12 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm">
                 <Phone size={16} className="mt-0.5 shrink-0" />
-                <span>
-                  <a href={`tel:${BUSINESS_PHONE[0]}`} className="hover:text-white transition-colors">
-                    {BUSINESS_PHONE[0]}
-                  </a>
+                <span className="space-y-0.5">
+                  {BUSINESS_PHONE.map((phone) => (
+                    <a key={phone} href={`tel:${phone}`} className="block hover:text-white transition-colors">
+                      {phone}
+                    </a>
+                  ))}
                 </span>
               </li>
               <li className="flex items-center gap-2 text-sm">

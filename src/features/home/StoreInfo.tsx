@@ -1,6 +1,13 @@
-import { MapPin, Clock, Phone } from 'lucide-react'
+import { MapPin, Clock, Phone, Mail } from 'lucide-react'
 import { Container } from '@/components/ui'
 import { AnimateIn } from '@/components/ui/AnimateIn'
+import {
+  BUSINESS_ADDRESS,
+  BUSINESS_PHONE,
+  BUSINESS_EMAIL,
+  STORE_HOURS,
+  CUSTOMER_SERVICE_HOURS,
+} from '@/constants'
 
 export function StoreInfo() {
   return (
@@ -25,7 +32,7 @@ export function StoreInfo() {
                   <div>
                     <p className="font-medium text-gray-900">Location</p>
                     <p className="text-gray-600 text-sm">
-                      Ijoko, Ogun State, Nigeria
+                      {BUSINESS_ADDRESS}
                     </p>
                   </div>
                 </div>
@@ -36,11 +43,9 @@ export function StoreInfo() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Store Hours</p>
+                    <p className="text-gray-600 text-sm">{STORE_HOURS}</p>
                     <p className="text-gray-600 text-sm">
-                      Monday – Saturday: 8:00 AM – 8:00 PM
-                    </p>
-                    <p className="text-gray-600 text-sm">
-                      Sunday: 10:00 AM – 5:00 PM
+                      Customer Service: {CUSTOMER_SERVICE_HOURS}
                     </p>
                   </div>
                 </div>
@@ -50,9 +55,27 @@ export function StoreInfo() {
                     <Phone size={20} className="text-accent" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Contact</p>
+                    <p className="font-medium text-gray-900">Phone</p>
+                    {BUSINESS_PHONE.map((phone) => (
+                      <p key={phone} className="text-gray-600 text-sm">
+                        <a href={`tel:${phone}`} className="hover:text-accent transition-colors">
+                          {phone}
+                        </a>
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                    <Mail size={20} className="text-accent" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Email</p>
                     <p className="text-gray-600 text-sm">
-                      Visit the store or reach us online
+                      <a href={`mailto:${BUSINESS_EMAIL}`} className="hover:text-accent transition-colors">
+                        {BUSINESS_EMAIL}
+                      </a>
                     </p>
                   </div>
                 </div>
