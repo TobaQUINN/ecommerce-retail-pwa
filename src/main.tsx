@@ -9,5 +9,7 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-const splash = document.getElementById('splash')
-if (splash) splash.classList.add('hidden')
+setTimeout(() => {
+  const splash = document.getElementById('splash')
+  if (splash) splash.classList.add('hidden')
+}, 1500)
