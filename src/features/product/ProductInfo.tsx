@@ -45,7 +45,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
       name: product.name,
       price: product.price,
       quantity,
-      image: product.images[0],
+      image: product.images[0] ?? '',
     })
     addToast(`${product.name} added to cart`)
   }
@@ -58,7 +58,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           name: product.name,
           price: product.price,
           quantity,
-          image: product.images[0],
+          image: product.images[0] ?? '',
         },
       },
     })

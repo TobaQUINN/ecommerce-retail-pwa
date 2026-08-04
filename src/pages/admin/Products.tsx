@@ -188,7 +188,8 @@ function Products() {
   }
 
   function removeNewImage(index: number) {
-    URL.revokeObjectURL(imagePreviews[index])
+    const preview = imagePreviews[index]
+    if (preview) URL.revokeObjectURL(preview)
     setImageFiles((prev) => prev.filter((_, i) => i !== index))
     setImagePreviews((prev) => prev.filter((_, i) => i !== index))
   }
