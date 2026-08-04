@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Phone, Mail } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { Container } from '@/components/ui'
-import { BUSINESS_NAME } from '@/constants'
+import {
+  BUSINESS_NAME,
+  BUSINESS_ADDRESS,
+  BUSINESS_PHONE,
+  BUSINESS_EMAIL,
+  STORE_HOURS,
+} from '@/constants'
 
 export function Footer() {
   return (
@@ -61,15 +67,25 @@ export function Footer() {
             <ul className="space-y-2">
               <li className="flex items-start gap-2 text-sm">
                 <MapPin size={16} className="mt-0.5 shrink-0" />
-                <span>Ijoko, Ogun State, Nigeria</span>
+                <span>{BUSINESS_ADDRESS}</span>
               </li>
-              <li className="flex items-center gap-2 text-sm">
-                <Phone size={16} className="shrink-0" />
-                <span>Contact via store</span>
+              <li className="flex items-start gap-2 text-sm">
+                <Phone size={16} className="mt-0.5 shrink-0" />
+                <span>
+                  <a href={`tel:${BUSINESS_PHONE[0]}`} className="hover:text-white transition-colors">
+                    {BUSINESS_PHONE[0]}
+                  </a>
+                </span>
               </li>
               <li className="flex items-center gap-2 text-sm">
                 <Mail size={16} className="shrink-0" />
-                <span>info@deexcelsior.com</span>
+                <a href={`mailto:${BUSINESS_EMAIL}`} className="hover:text-white transition-colors">
+                  {BUSINESS_EMAIL}
+                </a>
+              </li>
+              <li className="flex items-center gap-2 text-sm">
+                <Clock size={16} className="shrink-0" />
+                <span>{STORE_HOURS}</span>
               </li>
             </ul>
           </div>
