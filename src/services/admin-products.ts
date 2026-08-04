@@ -6,13 +6,7 @@ import {
   deleteDoc,
   serverTimestamp,
 } from 'firebase/firestore'
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject,
-} from 'firebase/storage'
-import { db, storage } from '@/firebase/config'
+import { db } from '@/firebase/config'
 import type { Department, Availability } from '@/types'
 
 export interface ProductFormData {
@@ -62,22 +56,24 @@ export function validateImageFiles(files: File[]): string | null {
   return null
 }
 
-export async function uploadProductImage(file: File, productId: string): Promise<string> {
-  const timestamp = Date.now()
-  const extension = file.name.split('.').pop()
-  const path = `products/${productId}/${timestamp}.${extension}`
-  const storageRef = ref(storage, path)
-  await uploadBytes(storageRef, file)
-  return getDownloadURL(storageRef)
-}
+async function uploadProductImage(file: File): Promise<string> {
+  const res = await fetch('/api/upload-url', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fileName: file.name, contentType: file.type }),
+  })
 
-export async function deleteProductImage(imageUrl: string): Promise<void> {
-  try {
-    const storageRef = ref(storage, imageUrl)
-    await deleteObject(storageRef)
-  } catch {
-    // Image may already be deleted or URL may be external
-  }
+  if (!res.ok) throw new Error('Failed to get upload URL')
+
+  const { uploadUrl, publicUrl } = await res.json()
+
+  await fetch(uploadUrl, {
+    method: 'PUT',
+    headers: { 'Content-Type': file.type },
+    body: file,
+  })
+
+  return publicUrl
 }
 
 export async function createProduct(
@@ -101,7 +97,7 @@ export async function createProduct(
   if (imageFiles.length > 0) {
     const imageUrls: string[] = []
     for (const file of imageFiles) {
-      const url = await uploadProductImage(file, docRef.id)
+      const url = await uploadProductImage(file)
       imageUrls.push(url)
     }
     await updateDoc(doc(db, 'products', docRef.id), { images: imageUrls })
@@ -119,19 +115,14 @@ export async function updateProduct(
 ): Promise<void> {
   const slug = generateSlug(data.name)
 
-  // Delete removed images from storage
-  for (const url of removedImageUrls) {
-    await deleteProductImage(url)
-  }
-
   // Upload new images
   const newUrls: string[] = []
   for (const file of newImageFiles) {
-    const url = await uploadProductImage(file, productId)
+    const url = await uploadProductImage(file)
     newUrls.push(url)
   }
 
-  const images = [...existingImages, ...newUrls]
+  const images = [...existingImages.filter((u) => !removedImageUrls.includes(u)), ...newUrls]
 
   const updateData: any = {
     ...data,
@@ -146,9 +137,6 @@ export async function updateProduct(
 }
 
 export async function deleteProduct(productId: string, imageUrls: string[]): Promise<void> {
-  for (const url of imageUrls) {
-    await deleteProductImage(url)
-  }
+  void imageUrls // S3 images can be cleaned up separately if needed
   await deleteDoc(doc(db, 'products', productId))
 }
-
