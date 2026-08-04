@@ -25,11 +25,14 @@ export default async function handler(req, res) {
   const command = new PutObjectCommand({
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: key,
-    ContentType: contentType,
   })
 
-  const uploadUrl = await getSignedUrl(s3, command, { expiresIn: 300 })
+  const uploadUrl = await getSignedUrl(s3, command, {
+    expiresIn: 300,
+    unhoistableHeaders: new Set(['content-type']),
+  })
+
   const publicUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`
 
-  return res.status(200).json({ uploadUrl, publicUrl })
+  return res.status(200).json({ uploadUrl, publicUrl, contentType })
 }

@@ -72,6 +72,7 @@ async function uploadProductImage(file: File): Promise<string> {
 
   const uploadRes = await fetch(uploadUrl, {
     method: 'PUT',
+    headers: { 'Content-Type': file.type },
     body: file,
   })
 
