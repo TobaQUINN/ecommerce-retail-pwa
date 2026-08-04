@@ -68,11 +68,13 @@ async function uploadProductImage(file: File): Promise<string> {
     throw new Error(`Upload URL request failed: ${res.status} ${text}`)
   }
 
-  const { uploadUrl, publicUrl } = await res.json()
+  const { uploadUrl, publicUrl, contentType } = await res.json()
 
   const uploadRes = await fetch(uploadUrl, {
     method: 'PUT',
-    headers: { 'Content-Type': file.type },
+    headers: {
+      'Content-Type': contentType,
+    },
     body: file,
   })
 

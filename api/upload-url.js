@@ -22,17 +22,18 @@ export default async function handler(req, res) {
 
   const key = `products/${Date.now()}-${fileName}`
 
-  const command = new PutObjectCommand({
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Key: key,
-  })
+  try {
+    const command = new PutObjectCommand({
+      Bucket: process.env.AWS_BUCKET_NAME,
+      Key: key,
+      ContentType: contentType,
+    })
 
-  const uploadUrl = await getSignedUrl(s3, command, {
-    expiresIn: 300,
-    unhoistableHeaders: new Set(['content-type']),
-  })
+    const uploadUrl = await getSignedUrl(s3, command, { expiresIn: 300 })
+    const publicUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`
 
-  const publicUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`
-
-  return res.status(200).json({ uploadUrl, publicUrl, contentType })
+    return res.status(200).json({ uploadUrl, publicUrl, contentType })
+  } catch (err) {
+    return res.status(500).json({ error: err.message })
+  }
 }
