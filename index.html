@@ -6,12 +6,50 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="De Excelsior Store - Quality electronics and fashion products in Ijoko, Ogun State" />
+    content="OAT De Excelsior - Quality electronics and fashion products in Ijoko, Ogun State" />
   <meta name="theme-color" content="#000000" />
-  <title>De Excelsior Store</title>
+  <title>OAT De Excelsior</title>
+  <style>
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+      transition: opacity 0.4s ease;
+    }
+    #splash.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #splash img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    #splash p {
+      margin-top: 24px;
+      color: #d1d5db;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.96); }
+    }
+  </style>
 </head>
 
 <body>
+  <div id="splash">
+    <img src="/logo.jpg" alt="OAT De Excelsior" />
+    <p>Quality you can trust. Style you deserve.</p>
+  </div>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
