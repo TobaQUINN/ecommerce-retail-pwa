@@ -82,3 +82,60 @@ I built the full admin data management system:
 
 The Admin Dashboard is now the single source of truth for managing the store's catalog. No code changes or redeployments needed to add, update, or remove products.
 
+# 13 — Business Identity & Constants
+**4 August 2026**
+
+Amirah provided the real business details for the store — the official name (OAT DE-EXCELSIOR), full address (4, Leoso Street, Behind Community Primary School, Ntabo Ijoko, Sango Ota, Ogun State), four phone numbers, email, and store hours. I centralized everything in a constants file so it's used consistently across the site rather than hardcoded in individual components.
+
+# 14 — Deploying to Vercel
+**4 August 2026**
+
+Amirah connected the repo to Vercel and added the Firebase environment variables, but the build failed. I identified two TypeScript errors (undefined array access on product images) and fixed them. I also added `vercel.json` for SPA client-side routing. After pushing, the site deployed successfully at deexcelsiorstore.vercel.app.
+
+# 15 — Real Contact Information Across the Site
+**4 August 2026**
+
+Amirah noticed the deployed site still showed placeholder contact info (generic address, fake email). She asked me to add all the business details everywhere they appear. I updated the Footer (all 4 phone numbers, real email, address, hours), the StoreInfo homepage section, and built a proper Contact page (`/contact`) — all pulling from the centralized constants.
+
+# 16 — Admin Security Verification
+**4 August 2026**
+
+Amirah tested admin access with a non-admin email and saw it get through. After investigating, she confirmed it was a false alarm — the admin guard was working correctly. The system checks the Firestore `admins` collection and redirects unauthorized users away.
+
+# 17 — Firestore Badge Field Bug
+**4 August 2026**
+
+Amirah tried adding her first product through the Admin Dashboard and hit a Firestore error: `addDoc()` rejected an `undefined` value in the `badge` field. I fixed the product service to strip empty optional fields before writing to Firestore. The admin product creation now works cleanly.
+
+# 18 — The Great S3 Upload Debugging Session
+**4 August 2026**
+
+Amirah tried to upload a product image but it hung forever. The root cause: Firebase Storage requires the paid Blaze plan, and her budget is zero. So we pivoted to AWS S3 for image storage.
+
+The architecture: a Vercel serverless function (`/api/upload-url`) holds the AWS credentials securely on the server. It generates a presigned S3 URL. The admin frontend requests this URL, then uploads the image directly to S3. Keys never touch the frontend or source code.
+
+What followed was a ~1 hour debugging marathon:
+
+1. **First deploy failed** — the AWS SDK packages (`@aws-sdk/client-s3`, `@aws-sdk/s3-request-presigner`) weren't saved to `package.json`. Vercel couldn't find them. Fixed by adding them explicitly.
+
+2. **Second deploy failed** — Vercel's serverless runtime doesn't support TypeScript 7 (which this project uses). Error: `Cannot read properties of undefined (reading 'readFile')`. Fixed by converting `api/upload-url.ts` to plain JavaScript (`api/upload-url.js`).
+
+3. **Upload returned "Load failed"** — the browser couldn't complete the PUT to S3. Initially suspected CORS. Amirah added a CORS config to the S3 bucket. Still failed.
+
+4. **Upload returned "403 Forbidden"** — suspected IAM permissions. Amirah attached a policy with `s3:PutObject`, `s3:GetObject`, `s3:DeleteObject`. Still failed.
+
+5. **Content-Type signature mismatch** — suspected the presigned URL was signed with a `ContentType` that didn't match what the browser sent. Tried removing it, adding it back, matching them. Still 403.
+
+6. **Added a server-side test endpoint** (`/api/test-s3`) — this bypasses the browser entirely and uploads directly from the Vercel server to S3. It returned: *"The request signature we calculated does not match the signature you provided."*
+
+7. **The actual problem: the secret key was pasted incorrectly in Vercel's environment variables.** The key contains `/` and `+` characters that likely got corrupted by trailing whitespace or an encoding issue during paste. Amirah deleted and re-pasted the `AWS_SECRET_ACCESS_KEY` in Vercel — and it worked immediately.
+
+A classic debugging lesson: the hardest bugs to find are often the simplest — a bad paste in an env var. We systematically eliminated every other possibility (permissions, CORS, content-type signing, TypeScript compatibility, package dependencies) before isolating it to the credential itself. The server-side test endpoint was the key insight that proved it wasn't a browser/CORS issue.
+
+# 19 — Branded Splash Screen
+**4 August 2026**
+
+Amirah didn't like seeing a blank white screen (or a generic spinner on white) while the app loaded. She uploaded the OAT De Excelsior logo — a striking green and gold emblem on black — and wanted it to be the loading experience itself.
+
+I built a splash screen directly in `index.html` (so it appears instantly, before any JS loads): the logo centered on a dark background with a gold spinning ring orbiting around it, and the tagline "Quality you can trust. Style you deserve." below. The splash stays visible for 1.5 seconds after React mounts to cover any initial data-loading state, then fades out smoothly. No white flash, no generic spinners — the brand is the first thing customers see.
+
