@@ -86,13 +86,17 @@ export async function createProduct(
 ): Promise<string> {
   const slug = generateSlug(data.name)
 
-  const docRef = await addDoc(collection(db, 'products'), {
+  const productData: any = {
     ...data,
     slug,
     images: [],
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
-  })
+  }
+
+  if (!productData.badge) delete productData.badge
+
+  const docRef = await addDoc(collection(db, 'products'), productData)
 
   if (imageFiles.length > 0) {
     const imageUrls: string[] = []
@@ -129,12 +133,16 @@ export async function updateProduct(
 
   const images = [...existingImages, ...newUrls]
 
-  await updateDoc(doc(db, 'products', productId), {
+  const updateData: any = {
     ...data,
     slug,
     images,
     updatedAt: serverTimestamp(),
-  })
+  }
+
+  if (!updateData.badge) delete updateData.badge
+
+  await updateDoc(doc(db, 'products', productId), updateData)
 }
 
 export async function deleteProduct(productId: string, imageUrls: string[]): Promise<void> {
