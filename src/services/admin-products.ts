@@ -63,15 +63,21 @@ async function uploadProductImage(file: File): Promise<string> {
     body: JSON.stringify({ fileName: file.name, contentType: file.type }),
   })
 
-  if (!res.ok) throw new Error('Failed to get upload URL')
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`Upload URL request failed: ${res.status} ${text}`)
+  }
 
   const { uploadUrl, publicUrl } = await res.json()
 
-  await fetch(uploadUrl, {
+  const uploadRes = await fetch(uploadUrl, {
     method: 'PUT',
-    headers: { 'Content-Type': file.type },
     body: file,
   })
+
+  if (!uploadRes.ok) {
+    throw new Error(`S3 upload failed: ${uploadRes.status} ${uploadRes.statusText}`)
+  }
 
   return publicUrl
 }
