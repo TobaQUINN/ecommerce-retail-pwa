@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Analytics } from '@vercel/analytics/react'
 import { ErrorBoundary } from '@/components/common/ErrorBoundary'
 import { router } from '@/routes'
 import { onAuthChange } from '@/services/auth'
@@ -26,6 +27,7 @@ function App() {
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <Analytics />
       </QueryClientProvider>
     </ErrorBoundary>
   )
