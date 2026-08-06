@@ -1,49 +1,51 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { Gem, Shirt } from 'lucide-react'
 import { Container } from '@/components/ui'
 import { AnimateIn } from '@/components/ui/AnimateIn'
+import type { LucideIcon } from 'lucide-react'
 
-interface CategoryShowcase {
+interface Category {
   name: string
   department: string
-  products: string[]
+  image?: string
+  icon?: LucideIcon
 }
 
-const categories: CategoryShowcase[] = [
+const categories: Category[] = [
   {
     name: 'Phone Accessories',
     department: 'electronics',
-    products: ['Chargers', 'USB Cables & Charging Cords', 'Power Banks', 'Memory Cards', 'Flash Drives'],
+    image: '/categories/phone-accessories.png',
   },
   {
     name: 'Audio & Sound',
     department: 'electronics',
-    products: ['Wired Earphones', 'Wireless Earbuds', 'Bluetooth Speakers', 'Headphones', 'MP3 Players'],
+    image: '/categories/audio-sound.png',
   },
   {
     name: 'Electronics',
     department: 'electronics',
-    products: ['Game Consoles', 'PS2–PS4 Controllers', 'Wired & Wireless Controllers', 'HDMI Cables', 'AV Cables'],
+    image: '/categories/electronics-category.png',
   },
   {
     name: 'Smart Devices',
     department: 'electronics',
-    products: ['Smart Watches'],
+    image: '/categories/smart-devices.png',
   },
   {
     name: 'Electrical Gadgets',
     department: 'electronics',
-    products: ['LED Bulbs', 'Extension Boxes', 'Portable Fans', 'Rechargeable Lamps', 'Sockets & Switches', 'Torches'],
+    image: '/categories/electrical-gadget.png',
   },
   {
     name: 'Fashion',
     department: 'fashion',
-    products: ['Jewellery', 'Wristwatches', 'Rings', 'Bracelets', 'Chains', 'Earrings', 'Anklets', 'Fashion Caps'],
+    icon: Gem,
   },
   {
     name: 'Lifestyle',
     department: 'fashion',
-    products: ["Men's Underwear", "Women's Underwear", 'Nightwear', 'Pyjamas'],
+    icon: Shirt,
   },
 ]
 
@@ -51,43 +53,41 @@ export function CategoriesSection() {
   return (
     <section className="py-16 sm:py-20 bg-gray-50">
       <Container>
-        <AnimateIn className="text-center mb-12">
+        <AnimateIn className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
             Popular Categories
           </h2>
           <p className="text-gray-600 text-lg max-w-lg mx-auto">
-            A glimpse at what we carry — browse any category to see the full collection
+            Browse any category to see the full collection
           </p>
         </AnimateIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-4 sm:overflow-visible sm:pb-0">
           {categories.map((category, index) => (
-            <AnimateIn key={category.name} delay={index * 0.06}>
+            <AnimateIn key={category.name} delay={index * 0.05}>
               <Link
                 to={`/${category.department}?category=${encodeURIComponent(category.name)}`}
-                className="group flex flex-col h-full bg-white rounded-xl border border-gray-100 p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-300"
+                className="group flex-shrink-0 snap-start w-44 sm:w-auto flex flex-col items-center bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-full"
               >
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3">
+                {category.image ? (
+                  <div className="w-full h-28 sm:h-32 overflow-hidden">
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full h-28 sm:h-32 flex items-center justify-center bg-gray-800">
+                    {category.icon && (
+                      <category.icon size={40} className="text-accent/70 group-hover:text-accent transition-colors" />
+                    )}
+                  </div>
+                )}
+                <h3 className="text-sm sm:text-base font-semibold text-white text-center leading-tight px-4 py-3">
                   {category.name}
                 </h3>
-
-                <div className="flex-1 mb-4">
-                  <div className="flex flex-wrap gap-1.5">
-                    {category.products.map((product) => (
-                      <span
-                        key={product}
-                        className="inline-block text-xs sm:text-sm text-gray-600 bg-gray-50 border border-gray-100 rounded-md px-2.5 py-1"
-                      >
-                        {product}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 group-hover:text-accent transition-colors">
-                  View Category
-                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
-                </span>
               </Link>
             </AnimateIn>
           ))}

@@ -139,3 +139,18 @@ Amirah didn't like seeing a blank white screen (or a generic spinner on white) w
 
 I built a splash screen directly in `index.html` (so it appears instantly, before any JS loads): the logo centered on a dark background with a gold spinning ring orbiting around it, and the tagline "Quality you can trust. Style you deserve." below. The splash stays visible for 1.5 seconds after React mounts to cover any initial data-loading state, then fades out smoothly. No white flash, no generic spinners — the brand is the first thing customers see.
 
+# 20 — Homepage Visual Refinement (glow branch)
+**3–6 August 2026**
+
+Amirah created a `glow` branch specifically for visual refinements. She provided real business photos — store front, hero background, category product shots, and department images — and directed a full homepage overhaul:
+
+- **Hero Section** — replaced generic gradient with the real store hero image, dark overlay for legibility, yellow heading ("Your Trusted Store for Electronics & Fashion"), white body text, and matching yellow-outline CTA buttons for both departments.
+- **Popular Categories** — redesigned from text lists to visual cards with real product images on dark backgrounds, horizontally scrollable with snap on mobile, grid on desktop. Categories without images (Fashion, Lifestyle) use fallback icons.
+- **Shop by Department** — replaced Unsplash stock photo for Electronics with the real department image, strengthened overlay gradient for text readability, changed department name headings to yellow for better contrast.
+- **Visit Our Store** — switched to real store-front photo, removed fixed height so the full image shows naturally.
+- **FAQ Section** — replaced the "Our Promise" section with an interactive accordion of 5 real FAQs reflecting the actual business workflow (payment timing, order verification, delivery, in-store pickup, product unavailability).
+- **Why Choose Us** — changed icon treatments to dark blue for consistency.
+- **Removed sections** — "How It Works" (ShoppingProcess) and the bottom multi-CTA section were cut as unnecessary.
+
+Amirah directed every detail — text colors, button consistency, overlay opacity, label visibility. When something wasn't legible she said so directly and expected it fixed. The department headings ended at yellow, category labels at white-on-dark. She prioritizes real photography over stock images and premium dark styling over generic light cards.
+

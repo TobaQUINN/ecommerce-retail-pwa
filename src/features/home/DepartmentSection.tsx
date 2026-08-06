@@ -10,7 +10,7 @@ const departments = [
       'Chargers, earbuds, speakers, smart watches, gaming accessories and more.',
     icon: Smartphone,
     href: '/electronics',
-    image: 'https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600&h=400&fit=crop',
+    image: '/categories/electronics-department.png',
   },
   {
     name: 'Fashion & Lifestyle',
@@ -48,11 +48,11 @@ export function DepartmentSection() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="flex items-center gap-3 mb-2">
                     <dept.icon size={24} className="text-accent" />
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3 className="text-xl font-semibold text-yellow-400">
                       {dept.name}
                     </h3>
                   </div>

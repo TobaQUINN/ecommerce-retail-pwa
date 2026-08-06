@@ -84,11 +84,11 @@ export function StoreInfo() {
           </AnimateIn>
 
           <AnimateIn direction="right" delay={0.1}>
-            <div className="relative rounded-lg overflow-hidden h-64 sm:h-80 lg:h-96 bg-gray-200">
+            <div className="relative rounded-lg overflow-hidden bg-gray-200">
               <img
-                src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&h=400&fit=crop"
-                alt="Our retail store"
-                className="w-full h-full object-cover"
+                src="/store-front.png"
+                alt="OAT De-Excelsior store front in Ijoko, Ogun State"
+                className="w-full h-auto"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />

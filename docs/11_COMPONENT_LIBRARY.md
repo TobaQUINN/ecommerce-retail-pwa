@@ -111,6 +111,12 @@ All form components should include validation and accessible labels.
 
 ---
 
+CategoryCarousel
+CategoryCard
+FAQSection
+FAQItem
+StoreLocationSection
+
 ## Component Principles
 
 Every component should:

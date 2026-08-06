@@ -4,10 +4,8 @@ import {
   CategoriesSection,
   FeaturedProducts,
   WhyChooseUs,
-  ShoppingProcess,
   StoreInfo,
   TrustSection,
-  CTASection,
 } from '@/features/home'
 
 function Home() {
@@ -18,10 +16,8 @@ function Home() {
       <CategoriesSection />
       <FeaturedProducts />
       <WhyChooseUs />
-      <ShoppingProcess />
       <StoreInfo />
       <TrustSection />
-      <CTASection />
     </>
   )
 }

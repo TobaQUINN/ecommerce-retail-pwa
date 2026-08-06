@@ -69,3 +69,15 @@ Update documentation whenever project direction changes.
 Avoid shortcuts that make future expansion difficult.
 
 Design for scalability without overengineering.
+
+## Realism & Customer Expectations
+
+The website must accurately represent the products and business.
+
+AI-generated imagery must not be used as a substitute for real product photography when it could cause customers to form unrealistic expectations.
+
+Real product images should be used for actual products whenever available.
+
+Real store photography should be preferred when representing the physical store.
+
+Do not invent testimonials, reviews, product popularity, delivery claims, inventory or brand associations.

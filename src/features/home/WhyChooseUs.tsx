@@ -46,8 +46,8 @@ export function WhyChooseUs() {
           {features.map((feature, index) => (
             <AnimateIn key={feature.title} delay={index * 0.1}>
               <div className="text-center p-6 bg-white rounded-lg">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 mb-4">
-                  <feature.icon size={24} className="text-accent" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-900/10 mb-4">
+                  <feature.icon size={24} className="text-blue-900" />
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">
                   {feature.title}

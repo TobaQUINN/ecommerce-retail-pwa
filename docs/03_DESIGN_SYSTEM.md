@@ -10,6 +10,18 @@ Every screen should prioritize clarity before decoration.
 
 Customers should immediately understand where they are, what they can do and what happens next.
 
+## Contrast Rule
+
+Text must remain clearly legible against its background.
+
+Do not mix dark and light text within the same visual text block unless each text element has its own intentional contrasting background.
+
+For dark backgrounds, prefer approved yellow and white text.
+
+For light backgrounds, prefer approved dark text and dark blue accents.
+
+CTA text must maintain clear contrast with its button background.
+
 ## Layout
 
 - Mobile-first design.

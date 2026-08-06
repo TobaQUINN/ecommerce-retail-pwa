@@ -22,6 +22,19 @@ Build the homepage according to the project documentation.
 - TypeScript
 - Tailwind CSS
 
+Homepage sections should prioritize:
+
+- Brand/hero
+- Department discovery
+- Visual category browsing
+- Product discovery
+- Trust/value
+- Physical store credibility
+- Useful customer information
+- One clear primary action
+
+Avoid redundant explanatory sections and excessive CTAs.
+
 ## Acceptance Criteria
 
 - Responsive navigation
